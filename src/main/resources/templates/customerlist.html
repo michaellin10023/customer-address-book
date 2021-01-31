@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>hello world demo</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h3>Customer Directory</h3>
+        <hr>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <a th:href="@{/customers/showFormForAdd}" class="btn btn-success btn-sm mb-3">
+                Add customer
+            </a>
+            &nbsp;
+
+            <form action="#" th:action="@{/customers/list}" method="get" class="form-inline">
+                <input id="txtSearch" type="text" class="mb-4 col-4" name="keyword" value="" placeholder="Type something to search">
+                &nbsp;
+                <button type="submit" class="btn btn-info btn-sm mb-3">Go</button>
+                &nbsp;
+                <button type="button" class="btn btn-info btn-sm mb-3" onclick="clearFilter()">Reset</button>
+            </form>
+
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Email</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tempCustomer : ${customers}">
+                <td th:text="${tempCustomer.name}"/>
+                <td th:text="${tempCustomer.address}"/>
+                <td th:text="${tempCustomer.email}"/>
+                <td>
+                    <a th:href="@{/customers/showFormForUpdate(customerId=${tempCustomer.id})}" class="btn btn-info btn-sm">Update</a>
+
+                    <a th:href="@{/customers/delete(customerId=${tempCustomer.id})}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <script th:inline="javascript">
+    function clearFilter() {
+        window.location = "/customers/list";
+        }
+    </script>
+</body>
+</html>

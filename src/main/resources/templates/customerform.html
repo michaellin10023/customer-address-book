@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Directory</h1>
+        <hr>
+        <p>Save info</p>
+        <form action="#" th:action="@{/customers/save}" th:object="${customer}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/>
+            <input type="text" th:field="*{address}" class="form-control mb-4 col-4" placeholder="Address"/>
+            <input type="text" th:field="*{email}" class="form-control mb-4 col-4" placeholder="Email"/>
+            <input type="submit" class="btn btn-info col-2" value="Submit" /> <input type="reset" class="btn btn-info col-2" value="Reset" />
+        </form>
+        <hr>
+        <a th:href="@{/customers/list}">Back to Customer list</a>
+    </div>
+</body>
+</html>
